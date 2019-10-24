@@ -223,6 +223,12 @@ def eachweekstats(request, week, playerid):
 def home(request):
     teams = User.objects.order_by("W")
     weeks = User.objects.order_by("id")
+    current_week = 'http://www.nfl.com/feeds-rs/currentWeek.json'
+    current_week = requests.get(current_week)
+    current_week = current_week.json()
+    current_week = current_week['week']-1
+    render_week = 'week' + str(current_week)
+    weekDisplay = 'Week '+ str(current_week)
     if len(weeks) == 10:
         theweek=         {
         'week1' : [weeks[4],weeks[2],weeks[8],weeks[5],weeks[6],weeks[1],weeks[7],weeks[3],weeks[0],weeks[9]],
@@ -239,19 +245,28 @@ def home(request):
             'teams' : teams,
             'length' : range(1,len(teams)+1),
             'superlength' : len(teams),
-            'weeks' : theweek['week1']
+            'weeks' : theweek['week1'],
+            'matchweek' : current_week
         }
     except:
                 context = {
             'teams' : teams,
             'length' : range(1,len(teams)+1),
             'superlength' : len(teams),
+            'matchweek' : current_week
         }
     return render(request, "football_app/user_home.html", context)
 def homeWeek(request, val):
     teams = User.objects.order_by("W")
     weeks = User.objects.order_by("id")
     weekDisplay = 'Week '+str(val)
+    current_week = 'http://www.nfl.com/feeds-rs/currentWeek.json'
+    current_week = requests.get(current_week)
+    current_week = current_week.json()
+    current_week = current_week['week']-1
+    render_week = 'week' + str(current_week)
+    value='week'+str(val)
+    thisWeek = theweek[value]
     if len(weeks) == 10:
         theweek=         {
             'week1' : [weeks[4],weeks[2],weeks[8],weeks[5],weeks[6],weeks[1],weeks[7],weeks[3],weeks[0],weeks[9]],
@@ -270,17 +285,20 @@ def homeWeek(request, val):
             'length' : range(1,len(teams)+1),
             'superlength' : len(teams),
             'weeks' : thisWeek,
-            'weekDisplay' : weekDisplay
+            'weekDisplay' : weekDisplay,
+            'matchweek' : val
         }
+        return render(request, "football_app/user_page.html", context)
     else:
         context = {
             'teams' : teams,
             'length' : range(1,len(teams)+1),
             'superlength' : len(teams),
             'weekDisplay' : weekDisplay,
-            'errormessage': '>>Ten Teams Required In Fantasy League'
+            'errormessage': '>>Ten Teams Required In Fantasy League',
+            'matchweek' : val
         }
-    return render(request, "football_app/user_home.html", context)
+        return render(request, "football_app/user_home.html", context)
 
 
 def matchup(request, val, match):
@@ -333,7 +351,7 @@ def matchup(request, val, match):
             'team1' : "Team 1",
             'team2' : "Team 2",
             'win1' : False,
-            'win2' : False
+            'win2' : False,
         }
     return render(request, "football_app/matchup_page.html", context)
 
