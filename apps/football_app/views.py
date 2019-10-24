@@ -266,7 +266,6 @@ def homeWeek(request, val):
     current_week = current_week['week']-1
     render_week = 'week' + str(current_week)
     value='week'+str(val)
-    thisWeek = theweek[value]
     if len(weeks) == 10:
         theweek=         {
             'week1' : [weeks[4],weeks[2],weeks[8],weeks[5],weeks[6],weeks[1],weeks[7],weeks[3],weeks[0],weeks[9]],
