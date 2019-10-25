@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^week/(?P<week>\d+)/(?P<playerid>\d+)$', views.eachweekstats),
     url(r'^home$', views.home),
     url(r'^home/(?P<val>[1-8]{1})$', views.homeWeek),
-    url(r'^matchup/(?P<val>[1-8]{1})/(?P<match>[0-4]{1})$', views.matchup)
+    url(r'^matchup/(?P<val>[1-8]{1})/(?P<match>[0-4]{1})$', views.matchup),
+    url(r'^leagueRosters$', views.leagueRosters)
 ]

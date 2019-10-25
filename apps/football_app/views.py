@@ -354,4 +354,14 @@ def matchup(request, val, match):
         }
     return render(request, "football_app/matchup_page.html", context)
 
+
+
+def leagueRosters(request):
+    teams = User.objects.all()
+
+    context = {
+        "teams": teams,
+    }
+    return render(request, "football_app/leagueRosters.html", context)
+
 # Create your views here.
