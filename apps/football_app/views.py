@@ -358,10 +358,25 @@ def matchup(request, val, match):
 
 def leagueRosters(request):
     teams = User.objects.all()
+    total_score = 0
+    current_week = 'http://www.nfl.com/feeds-rs/currentWeek.json'
+    current_week = requests.get(current_week)
+    current_week = current_week.json()
+    current_week = int(current_week['week']) - 1
+    
+            
 
     context = {
         "teams": teams,
+        "current_week": current_week
+
     }
     return render(request, "football_app/leagueRosters.html", context)
+
+
+def clearUsers(requests):
+    for user in User.objects.all():
+        user.delete()
+    return redirect("/")
 
 # Create your views here.

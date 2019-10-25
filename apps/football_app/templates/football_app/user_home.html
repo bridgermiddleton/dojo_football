@@ -191,8 +191,12 @@
                         </table>
                     </div>
                 </div>   
-
-
+                <div class="text-center">
+                    <form action="/clearUsers" method="POST">
+                        {% csrf_token %}
+                        <input class="btn btn-danger" type="submit" value="Clear Users">
+                    </form>
+                    </div>
         </div>
          
 </body>

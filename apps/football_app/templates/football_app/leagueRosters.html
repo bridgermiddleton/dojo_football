@@ -42,16 +42,17 @@
                     <tr>
                       <th scope="col">Slot</th>
                       <th scope="col">Player</th>
-                      <th scope="col">Points</th>
                     </tr>
                   </thead>
                   <tbody>
                     {% for p in team.players.all %}
                     {% if p.position == "QB" %}
+                   
+
                     <tr>
                       <th scope="row">{{p.position}}</th>
                       <td>{{p.first_name}} {{p.last_name}}</td>
-                      <td>{{p.total_points}}</td>
+                      
                     </tr>
                     {% endif %}
                     {% endfor %}
@@ -60,7 +61,7 @@
                     <tr>
                       <th scope="row">{{p.position}}</th>
                       <td>{{p.first_name}} {{p.last_name}}</td>
-                      <td>{{p.total_points}}</td>
+                      
                     </tr>
                     {% endif %}
                     {% endfor %}
@@ -69,7 +70,7 @@
                     <tr>
                       <th scope="row">{{p.position}}</th>
                       <td>{{p.first_name}} {{p.last_name}}</td>
-                      <td>{{p.total_points}}</td>
+                      
                     </tr>
                     {% endif %}
                     {% endfor %}
@@ -78,26 +79,11 @@
                     <tr>
                       <th scope="row">{{p.position}}</th>
                       <td>{{p.first_name}} {{p.last_name}}</td>
-                      <td>{{p.total_points}}</td>
                     </tr>
                     {% endif %}
                     {% endfor %}
                   </tbody>
                 </table>
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
-                          <th scope="col-10">Total Score</th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                          <th scope="col-1">{{p.total_score}}</th>
-                      </tr>
-                  </thead>
-              </table>
           </div>
         {% endfor %}
 </body>
